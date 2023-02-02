@@ -13,6 +13,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.PS4Controller.Button;
 import frc.robot.Constants.AutoConstants;
@@ -36,12 +37,14 @@ public class RobotContainer {
     private final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
     // The driver's controller
-    XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
+    Joystick m_driverController = new Joystick(OIConstants.kDriverControllerPort);
+    JoystickButton button1 = new JoystickButton(m_driverController, 1);
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
     public RobotContainer() {
+
         // Configure the button bindings
         configureButtonBindings();
 
@@ -51,10 +54,10 @@ public class RobotContainer {
                 // Turning is controlled by the X axis of the right stick.
                 new RunCommand(
                         () -> m_robotDrive.drive(
-                                MathUtil.applyDeadband(-m_driverController.getLeftY(), 0.06),
-                                MathUtil.applyDeadband(-m_driverController.getLeftX(), 0.06),
-                                MathUtil.applyDeadband(-m_driverController.getRightX(), 0.06),
-                                true),
+                                MathUtil.applyDeadband(-m_driverController.getRawAxis(1) * -1, 0.1),
+                                MathUtil.applyDeadband(-m_driverController.getRawAxis(0) * -1, 0.1),
+                                MathUtil.applyDeadband(-m_driverController.getRawAxis(2) * -1, 0.1),
+                                false),
                         m_robotDrive));
     }
 
@@ -92,9 +95,9 @@ public class RobotContainer {
                 // Start at the origin facing the +X direction
                 new Pose2d(0, 0, new Rotation2d(0)),
                 // Pass through these two interior waypoints, making an 's' curve path
-                List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
+                List.of(new Translation2d(-1, 0), new Translation2d(-1, -1), new Translation2d(0, -1)),
                 // End 3 meters straight ahead of where we started, facing forward
-                new Pose2d(3, 0, new Rotation2d(0)),
+                new Pose2d(0, 0, new Rotation2d(0)),
                 config);
 
         var thetaController = new ProfiledPIDController(
