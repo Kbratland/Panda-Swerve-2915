@@ -100,9 +100,9 @@ public class RobotContainer {
                                 // Pass through these two interior waypoints, making an 's' curve path
                                 List.of(new Translation2d(1, 0), new Translation2d(1, 1), new Translation2d(0, 1)),
                                 // End 3 meters straight ahead of where we started, facing forward
-                                new Pose2d(0, 0, new Rotation2d(0)),
+                                new Pose2d(0, 0, new Rotation2d(1)),
                                 config);
-
+                // hi
                 var thetaController = new ProfiledPIDController(
                                 AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints);
                 thetaController.enableContinuousInput(-Math.PI, Math.PI);
