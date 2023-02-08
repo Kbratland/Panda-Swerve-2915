@@ -98,7 +98,14 @@ public class RobotContainer {
                                 // Start at the origin facing the +X direction
                                 new Pose2d(0, 0, new Rotation2d(0)),
                                 // Waypoint syntax - newTranslation2d(x,y,(optional)Rotation);
-                                List.of(new Translation2d(1, 0), new Translation2d(1, 1), new Translation2d(0, 1)),
+                                List.of(new Translation2d(1, 0), new Translation2d(1.75, 0), new Translation2d(1.75, 4.5)), 
+                                new Translation2d(7.5, 9.5), new Translation2d(7, 9.5), new Translation2d(7, 10),
+                                new Translation2d(8, 10), new Translation2d(8, 9), new Translation2d(6.5, 9),
+                                new Translation2d(6.5, 10.5), new Translation2d(8.5, 10.5), new Translation2d(8.5, 8.5),
+                                new Translation2d(6, 8.5), new Translation2d(6, 11), new Translation2d(9, 11), 
+                                new Translation2d(9, 8), new Translation2d(6, 8), new Translation2d(3.75, 10.6),
+                                new Translation2d(2.75, 9), new Translation2d(1.75, 4.5), new Translation2d(1.75, 0),
+                                new Translation2d(1, 0), new Translation2d(0, 0),
                                 // End 3 meters straight ahead of where we started, facing forward
                                 new Pose2d(0, 0, new Rotation2d(1)),
                                 config);
