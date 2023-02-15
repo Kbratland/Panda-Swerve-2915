@@ -19,11 +19,16 @@ import edu.wpi.first.wpilibj.PS4Controller.Button;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.ScrewLift;
+import frc.robot.commands.ScrewLower;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ScrewDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
+
 import java.util.List;
 
 /*
@@ -33,12 +38,17 @@ import java.util.List;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-        // The robot's subsystems
+        // The robot's subsystems+
+
         private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+        private final ScrewDrive m_screwDrive = new ScrewDrive();
+        public final ScrewLift m_Lift = new ScrewLift(m_screwDrive);
+        public final ScrewLower m_Lower = new ScrewLower(m_screwDrive);
 
         // The driver's controller
         Joystick m_driverController = new Joystick(OIConstants.kDriverControllerPort);
-        JoystickButton button1 = new JoystickButton(m_driverController, 1);
+        // Trigger button5 = new JoystickButton(m_driverController, 5);
+        // Trigger button6 = new JoystickButton(m_driverController, 6);
 
         /**
          * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -76,6 +86,10 @@ public class RobotContainer {
                                 .whileTrue(new RunCommand(
                                                 () -> m_robotDrive.setX(),
                                                 m_robotDrive));
+                // button5.whileTrue(new ScrewLift(m_screwDrive));
+                // button6.whileTrue(new ScrewLower(m_screwDrive));
+                new JoystickButton(m_driverController, 5).whileTrue(m_Lift);
+                new JoystickButton(m_driverController, 6).whileTrue(m_Lower);
         }
 
         /**
