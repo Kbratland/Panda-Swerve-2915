@@ -56,6 +56,7 @@ public class RobotContainer {
         public final ScrewLower m_Lower = new ScrewLower(m_screwDrive);
         public final CrabClaw m_CrabClaw = new CrabClaw(pneumaticSystem);
         public final CrabClawClose m_ClawClose = new CrabClawClose(pneumaticSystem);
+        public final Compress m_Compress = new Compress(m_Compress);
         //
         // The driver's controller
         Joystick m_driverController = new Joystick(OIConstants.kDriverControllerPort);
@@ -106,6 +107,7 @@ public class RobotContainer {
                 new JoystickButton(m_driverController, 4).whileTrue(m_ClawClose);
                 new JoystickButton(m_driverController, 1).whileTrue(aDown);
                 new JoystickButton(m_driverController, 2).whileTrue(aUp);
+                new JoystickButton(m_driverController, 7).whileTrue(m_Compress)
         }
 
         /**
