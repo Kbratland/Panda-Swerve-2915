@@ -1,10 +1,9 @@
 package frc.robot.commands;
-
+import frc.robot.subsystems.pneumaticSystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.PneumaticSystem;
 
-public class PistonOut extends CommandBase {
-    public PneumaticSystem pneumaticSystem;
+public class CrabClaw {
 
     public PistonOut(PneumaticSystem pneumaticSystem) {
         addRequirements(pneumaticSystem);
@@ -17,10 +16,12 @@ public class PistonOut extends CommandBase {
     }
 
     public void execute() {
-        pneumaticSystem.decompress();
+        pneumaticSystem.CloseClaw.set(true);
     }
 
     public boolean isFinished() {
+        pneumaticSystem.CloseClaw.set(false);
+        pneumaticSystem.OpenClaw.set(true);
         return false;
     }
 }

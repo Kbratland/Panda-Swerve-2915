@@ -44,6 +44,7 @@ public class RobotContainer {
         private final ScrewDrive m_screwDrive = new ScrewDrive();
         public final ScrewLift m_Lift = new ScrewLift(m_screwDrive);
         public final ScrewLower m_Lower = new ScrewLower(m_screwDrive);
+        public final CrabClaw m_CrabClaw = new CrabClaw();
 
         // The driver's controller
         Joystick m_driverController = new Joystick(OIConstants.kDriverControllerPort);
@@ -90,6 +91,7 @@ public class RobotContainer {
                 // button6.whileTrue(new ScrewLower(m_screwDrive));
                 new JoystickButton(m_driverController, 5).whileTrue(m_Lift);
                 new JoystickButton(m_driverController, 6).whileTrue(m_Lower);
+                new JoystickButton(m_CrabClaw, 1).whiletrue(m_CloseClaw);
         }
 
         /**
