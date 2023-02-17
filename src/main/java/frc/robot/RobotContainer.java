@@ -23,9 +23,9 @@ import frc.robot.commands.CrabClaw;
 import frc.robot.commands.CrabClawClose;
 import frc.robot.commands.ScrewLift;
 import frc.robot.commands.ScrewLower;
-// import frc.robot.commands.armDown;
-// import frc.robot.commands.armUp;
-// import frc.robot.subsystems.Armticulation;
+import frc.robot.commands.armDown;
+import frc.robot.commands.armUp;
+import frc.robot.subsystems.Armticulation;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.PneumaticSystem;
 import frc.robot.subsystems.ScrewDrive;
@@ -49,14 +49,14 @@ public class RobotContainer {
         private final DriveSubsystem m_robotDrive = new DriveSubsystem();
         private final PneumaticSystem pneumaticSystem = new PneumaticSystem();
         private final ScrewDrive m_screwDrive = new ScrewDrive();
-        // private final Armticulation m_armSystem = new Armticulation();
+        private final Armticulation m_armSystem = new Armticulation();
         public final ScrewLift m_Lift = new ScrewLift(m_screwDrive);
-        // public final armDown aDown = new armDown(m_armSystem);
-        // public final armUp aUp = new armUp(m_armSystem);
+        public final armDown aDown = new armDown(m_armSystem);
+        public final armUp aUp = new armUp(m_armSystem);
         public final ScrewLower m_Lower = new ScrewLower(m_screwDrive);
         public final CrabClaw m_CrabClaw = new CrabClaw(pneumaticSystem);
         public final CrabClawClose m_ClawClose = new CrabClawClose(pneumaticSystem);
-
+        //
         // The driver's controller
         Joystick m_driverController = new Joystick(OIConstants.kDriverControllerPort);
         // Trigger button5 = new JoystickButton(m_driverController, 5);
@@ -104,8 +104,8 @@ public class RobotContainer {
                 new JoystickButton(m_driverController, 6).whileTrue(m_Lower);
                 new JoystickButton(m_driverController, 3).whileTrue(m_CrabClaw);
                 new JoystickButton(m_driverController, 4).whileTrue(m_ClawClose);
-                // new JoystickButton(m_driverController, 1).whileTrue(aDown);
-                // new JoystickButton(m_driverController, 2).whileTrue(aUp);
+                new JoystickButton(m_driverController, 1).whileTrue(aDown);
+                new JoystickButton(m_driverController, 2).whileTrue(aUp);
         }
 
         /**

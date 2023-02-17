@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 /*
 From McLain: 
 See here:  https://docs.wpilib.org/en/stable/docs/software/hardware-apis/pneumatics/pneumatics.html
@@ -19,20 +20,22 @@ You probably want your setup work (see comments below) in your constructor. Then
 */
 public class PneumaticSystem extends SubsystemBase {
     /*
-    From McLain: you have two compressors created here: why?
-    */
-    Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
+     * From McLain: you have two compressors created here: why?
+     */
+    // Compressor phCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
     Compressor phCompressor = new Compressor(1, PneumaticsModuleType.REVPH);
 
-    // pcmCompressor.enableDigital();
-    // pcmCompressor.disable();
-    /* From McLain
-    The above lines should go in a constructor function to get the compressor started 
-    */
+    // phCompressor.enableDigital();
+    // phCompressor.disable();
+    /*
+     * From McLain
+     * The above lines should go in a constructor function to get the compressor
+     * started
+     */
 
-    boolean enabled = pcmCompressor.enabled();
-    boolean pressureSwitch = pcmCompressor.getPressureSwitchValue();
-    double current = pcmCompressor.getCurrent();
+    boolean enabled = phCompressor.enabled();
+    boolean pressureSwitch = phCompressor.getPressureSwitchValue();
+    double current = phCompressor.getCurrent();
 
     // DoubleSolenoid exampleDoublePCM = new
     // DoubleSolenoid(PneumaticsModuleType.CTREPCM, 1, 2);
@@ -41,7 +44,7 @@ public class PneumaticSystem extends SubsystemBase {
     // exampleDoublePH.set(k)
 
     public void suck() {
-        
+
         phCompressor.enableDigital();
     }
 
@@ -50,10 +53,10 @@ public class PneumaticSystem extends SubsystemBase {
     }
 
     public void reverse() {
-        // out.set(true);
+        exampleDoublePH.set(kReverse);
     }
 
     public void thrust() {
-        // in.set(true);
+        exampleDoublePH.set(kForward);
     }
 }
