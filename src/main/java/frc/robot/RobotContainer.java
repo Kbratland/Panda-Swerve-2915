@@ -15,7 +15,7 @@ import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.PS4Controller.Button;
+// import edu.wpi.first.wpilibj.PS4Controller.Button;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
@@ -27,6 +27,8 @@ import frc.robot.commands.ScrewLift;
 import frc.robot.commands.ScrewLower;
 import frc.robot.commands.armDown;
 import frc.robot.commands.armUp;
+// import frc.robot.commands.muscleIn;
+// import frc.robot.commands.muscleOut;
 import frc.robot.subsystems.Armticulation;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.PneumaticSystem;
@@ -60,6 +62,8 @@ public class RobotContainer {
         public final CrabClawClose m_ClawClose = new CrabClawClose(pneumaticSystem);
         public final Compress m_Compress = new Compress(pneumaticSystem);
         public final ClawOff m_ClawOff = new ClawOff(pneumaticSystem);
+        // public final muscleIn m_MuscleIn = new muscleIn(pneumaticSystem);
+        // public final muscleOut m_MuscleOut = new muscleOut(pneumaticSystem);
         //
         // The driver's controller
         Joystick m_driverController = new Joystick(OIConstants.kDriverControllerPort);
@@ -84,7 +88,7 @@ public class RobotContainer {
                                                                                 -m_driverController.getRawAxis(0), 0.1),
                                                                 MathUtil.applyDeadband(
                                                                                 -m_driverController.getRawAxis(2), 0.1),
-                                                                false),
+                                                                true),
                                                 m_robotDrive));
         }
 
@@ -98,10 +102,10 @@ public class RobotContainer {
          * {@link JoystickButton}.
          */
         private void configureButtonBindings() {
-                new JoystickButton(m_driverController, Button.kR1.value)
-                                .whileTrue(new RunCommand(
-                                                () -> m_robotDrive.setX(),
-                                                m_robotDrive));
+                // new JoystickButton(m_driverController, Button.kR1.value)
+                // .whileTrue(new RunCommand(
+                // () -> m_robotDrive.setX(),
+                // m_robotDrive));
                 // button5.whileTrue(new ScrewLift(m_screwDrive));
                 // button6.whileTrue(new ScrewLower(m_screwDrive));
                 new JoystickButton(m_driverController, 5).whileTrue(m_Lift);
@@ -111,6 +115,8 @@ public class RobotContainer {
                 new JoystickButton(m_driverController, 1).whileTrue(aDown);
                 new JoystickButton(m_driverController, 2).whileTrue(aUp);
                 new JoystickButton(m_driverController, 7).whileTrue(m_Compress);
+                // new JoystickButton(m_driverController, 8).whileTrue(m_MuscleIn);
+                // new JoystickButton(m_driverController, 9).whileTrue(m_MuscleOut);
         }
 
         /**

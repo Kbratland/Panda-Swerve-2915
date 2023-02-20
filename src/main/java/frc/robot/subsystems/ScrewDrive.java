@@ -9,12 +9,12 @@ public class ScrewDrive extends SubsystemBase {
     CANSparkMax m_ScrewMotor = new CANSparkMax(10, MotorType.kBrushless);
 
     public void lift() {
-        m_ScrewMotor.set(.75);
+        m_ScrewMotor.set(1);
         System.out.println("lifting");
     }
 
     public void lower() {
-        m_ScrewMotor.set(-0.75);
+        m_ScrewMotor.set(-1);
         System.out.println("Lowering");
     }
 

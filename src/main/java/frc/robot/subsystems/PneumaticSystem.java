@@ -37,6 +37,8 @@ public class PneumaticSystem extends SubsystemBase {
 
     // DoubleSolenoid exampleDoublePCM = new
     DoubleSolenoid exampleDoublePH = new DoubleSolenoid(13, PneumaticsModuleType.REVPH, 0, 1);
+    // DoubleSolenoid musclePiston = new DoubleSolenoid(13,
+    // PneumaticsModuleType.REVPH, 2, 3);
 
     // exampleDoublePH.set(k)
 
@@ -48,13 +50,25 @@ public class PneumaticSystem extends SubsystemBase {
         phCompressor.disable();
     }
 
+    // public void muscleReverse() {
+    // musclePiston.set(kReverse);
+    // }
+
     public void reverse() {
         exampleDoublePH.set(kReverse);
     }
 
+    // public void muscleThrust() {
+    // musclePiston.set(kForward);
+    // }
+
     public void thrust() {
         exampleDoublePH.set(kForward);
     }
+
+    // public void muscleOff() {
+    // musclePiston.set(kOff);
+    // }
 
     public void off() {
         exampleDoublePH.set(kOff);
