@@ -9,13 +9,13 @@ public class Armticulation extends SubsystemBase {
     CANSparkMax m_Armticulation2 = new CANSparkMax(11, MotorType.kBrushless);
 
     public void lift() {
-        m_Armticulation.set(0.1);
-        m_Armticulation2.set(-0.1);
+        m_Armticulation.set(0.2);
+        m_Armticulation2.set(-0.2);
     }
 
     public void lower() {
-        m_Armticulation.set(-0.1);
-        m_Armticulation2.set(0.1);
+        m_Armticulation.set(-0.2);
+        m_Armticulation2.set(0.2);
     }
 
     public void brokenArm() {
