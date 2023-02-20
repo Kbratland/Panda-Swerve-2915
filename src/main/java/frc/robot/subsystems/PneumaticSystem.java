@@ -5,7 +5,6 @@ import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /*
@@ -23,7 +22,7 @@ public class PneumaticSystem extends SubsystemBase {
      * From McLain: you have two compressors created here: why?
      */
     // Compressor phCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
-    Compressor phCompressor = new Compressor(1, PneumaticsModuleType.REVPH);
+    Compressor phCompressor = new Compressor(13, PneumaticsModuleType.REVPH);
 
     // phCompressor.enableDigital();
     // phCompressor.disable();
@@ -33,18 +32,15 @@ public class PneumaticSystem extends SubsystemBase {
      * started
      */
 
-    boolean enabled = phCompressor.enabled();
-    boolean pressureSwitch = phCompressor.getPressureSwitchValue();
+    boolean enabled = phCompressor.isEnabled();
     double current = phCompressor.getCurrent();
 
     // DoubleSolenoid exampleDoublePCM = new
-    // DoubleSolenoid(PneumaticsModuleType.CTREPCM, 1, 2);
-    DoubleSolenoid exampleDoublePH = new DoubleSolenoid(9, PneumaticsModuleType.REVPH, 4, 5);
+    DoubleSolenoid exampleDoublePH = new DoubleSolenoid(13, PneumaticsModuleType.REVPH, 0, 1);
 
     // exampleDoublePH.set(k)
 
     public void suck() {
-
         phCompressor.enableDigital();
     }
 
@@ -58,5 +54,9 @@ public class PneumaticSystem extends SubsystemBase {
 
     public void thrust() {
         exampleDoublePH.set(kForward);
+    }
+
+    public void off() {
+        exampleDoublePH.set(kOff);
     }
 }

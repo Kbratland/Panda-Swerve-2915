@@ -19,6 +19,8 @@ import edu.wpi.first.wpilibj.PS4Controller.Button;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.ClawOff;
+import frc.robot.commands.Compress;
 import frc.robot.commands.CrabClaw;
 import frc.robot.commands.CrabClawClose;
 import frc.robot.commands.ScrewLift;
@@ -56,6 +58,8 @@ public class RobotContainer {
         public final ScrewLower m_Lower = new ScrewLower(m_screwDrive);
         public final CrabClaw m_CrabClaw = new CrabClaw(pneumaticSystem);
         public final CrabClawClose m_ClawClose = new CrabClawClose(pneumaticSystem);
+        public final Compress m_Compress = new Compress(pneumaticSystem);
+        public final ClawOff m_ClawOff = new ClawOff(pneumaticSystem);
         //
         // The driver's controller
         Joystick m_driverController = new Joystick(OIConstants.kDriverControllerPort);
@@ -106,6 +110,7 @@ public class RobotContainer {
                 new JoystickButton(m_driverController, 4).whileTrue(m_ClawClose);
                 new JoystickButton(m_driverController, 1).whileTrue(aDown);
                 new JoystickButton(m_driverController, 2).whileTrue(aUp);
+                new JoystickButton(m_driverController, 7).whileTrue(m_Compress);
         }
 
         /**

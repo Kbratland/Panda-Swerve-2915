@@ -3,12 +3,12 @@ package frc.robot.commands;
 import frc.robot.subsystems.PneumaticSystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class CrabClawClose extends CommandBase {
-    public PneumaticSystem m_piston;
+public class Compress extends CommandBase {
+    private PneumaticSystem m_compressor;
 
-    public CrabClawClose(PneumaticSystem m_piston) {
-        addRequirements(m_piston);
-        this.m_piston = m_piston;
+    public Compress(PneumaticSystem m_compressor) {
+        addRequirements(m_compressor);
+        this.m_compressor = m_compressor;
     }
 
     @Override
@@ -17,11 +17,10 @@ public class CrabClawClose extends CommandBase {
     }
 
     public void execute() {
-        m_piston.reverse();
+        m_compressor.suck();
     }
 
     public boolean isFinished() {
         return false;
-
     }
 }

@@ -18,7 +18,6 @@ public class CrabClaw extends CommandBase {
 
     public void execute() {
         m_piston.thrust();
-        m_piston.suck();
     }
 
     public boolean isFinished() {

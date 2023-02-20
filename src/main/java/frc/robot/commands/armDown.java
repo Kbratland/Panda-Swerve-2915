@@ -17,7 +17,7 @@ public class armDown extends CommandBase {
     }
 
     public void execute() {
-        armticulation.lift();
+        armticulation.lower();
     }
 
     public boolean isFinished() {
