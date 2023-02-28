@@ -25,6 +25,7 @@ import frc.robot.commands.CrabClaw;
 import frc.robot.commands.CrabClawClose;
 import frc.robot.commands.ScrewLift;
 import frc.robot.commands.ScrewLower;
+// import frc.robot.commands.armDeploy;
 import frc.robot.commands.armDown;
 import frc.robot.commands.armUp;
 // import frc.robot.commands.muscleIn;
@@ -62,6 +63,7 @@ public class RobotContainer {
         public final CrabClawClose m_ClawClose = new CrabClawClose(pneumaticSystem);
         public final Compress m_Compress = new Compress(pneumaticSystem);
         public final ClawOff m_ClawOff = new ClawOff(pneumaticSystem);
+        // public final armDeploy aDeploy = new armDeploy(m_armSystem);
         // public final muscleIn m_MuscleIn = new muscleIn(pneumaticSystem);
         // public final muscleOut m_MuscleOut = new muscleOut(pneumaticSystem);
         //
@@ -83,11 +85,14 @@ public class RobotContainer {
                                 new RunCommand(
                                                 () -> m_robotDrive.drive(
                                                                 MathUtil.applyDeadband(
-                                                                                -m_driverController.getRawAxis(1), 0.1),
+                                                                                -m_driverController.getRawAxis(1),
+                                                                                0.05),
                                                                 MathUtil.applyDeadband(
-                                                                                -m_driverController.getRawAxis(0), 0.1),
+                                                                                -m_driverController.getRawAxis(0),
+                                                                                0.05),
                                                                 MathUtil.applyDeadband(
-                                                                                -m_driverController.getRawAxis(2), 0.1),
+                                                                                -m_driverController.getRawAxis(2),
+                                                                                0.05),
                                                                 true),
                                                 m_robotDrive));
         }
@@ -115,8 +120,7 @@ public class RobotContainer {
                 new JoystickButton(m_driverController, 1).whileTrue(aDown);
                 new JoystickButton(m_driverController, 2).whileTrue(aUp);
                 new JoystickButton(m_driverController, 7).whileTrue(m_Compress);
-                // new JoystickButton(m_driverController, 8).whileTrue(m_MuscleIn);
-                // new JoystickButton(m_driverController, 9).whileTrue(m_MuscleOut);
+                // new JoystickButton(m_driverController, 8).whileTrue(aDeploy);
         }
 
         /**
