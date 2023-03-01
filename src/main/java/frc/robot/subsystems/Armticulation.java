@@ -5,7 +5,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Armticulation extends SubsystemBase {
-    // CANSparkMax m_Armticulation = new CANSparkMax(12, MotorType.kBrushless);
+    CANSparkMax m_Armticulation = new CANSparkMax(12, MotorType.kBrushless);
     CANSparkMax m_Armticulation2 = new CANSparkMax(11, MotorType.kBrushed);
 
     public void lift() {
@@ -14,11 +14,11 @@ public class Armticulation extends SubsystemBase {
     }
 
     public void deploy() {
-        // m_Armticulation.set(1);
+        m_Armticulation.set(1);
     }
 
     public void stopDeploy() {
-        // m_Armticulation.set(0);
+        m_Armticulation.set(0);
     }
 
     public void lower() {

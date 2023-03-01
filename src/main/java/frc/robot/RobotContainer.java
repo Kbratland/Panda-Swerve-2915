@@ -18,13 +18,16 @@ import edu.wpi.first.wpilibj.XboxController;
 // import edu.wpi.first.wpilibj.PS4Controller.Button;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
-import frc.robot.Constants.OIConstants;
+// import frc.robot.Constants.OIConstants;
+import frc.robot.commands.ArmMove;
 import frc.robot.commands.ClawOff;
 import frc.robot.commands.Compress;
 import frc.robot.commands.CrabClaw;
 import frc.robot.commands.CrabClawClose;
 import frc.robot.commands.ScrewLift;
 import frc.robot.commands.ScrewLower;
+import frc.robot.commands.ScrewMove;
+import frc.robot.commands.armDeploy;
 // import frc.robot.commands.armDeploy;
 import frc.robot.commands.armDown;
 import frc.robot.commands.armUp;
@@ -51,6 +54,9 @@ import java.util.List;
 public class RobotContainer {
         // The robot's subsystems+
 
+        Joystick m_driverController = new Joystick(0);
+        XboxController m_armController = new XboxController(1);
+
         private final DriveSubsystem m_robotDrive = new DriveSubsystem();
         private final PneumaticSystem pneumaticSystem = new PneumaticSystem();
         private final ScrewDrive m_screwDrive = new ScrewDrive();
@@ -63,13 +69,12 @@ public class RobotContainer {
         public final CrabClawClose m_ClawClose = new CrabClawClose(pneumaticSystem);
         public final Compress m_Compress = new Compress(pneumaticSystem);
         public final ClawOff m_ClawOff = new ClawOff(pneumaticSystem);
-        // public final armDeploy aDeploy = new armDeploy(m_armSystem);
-        // public final muscleIn m_MuscleIn = new muscleIn(pneumaticSystem);
-        // public final muscleOut m_MuscleOut = new muscleOut(pneumaticSystem);
+        public final ArmMove armMove = new ArmMove(m_armSystem, m_armController);
+        public final ScrewMove screwMove = new ScrewMove(m_screwDrive, m_armController);
+        public final armDeploy aDeploy = new armDeploy(m_armSystem);
         //
         // The driver's controller
-        Joystick m_driverController = new Joystick(OIConstants.kDriverControllerPort);
-        XboxController m_arnController = new XboxController(1);
+
         // Trigger button5 = new JoystickButton(m_driverController, 5);
         // Trigger button6 = new JoystickButton(m_driverController, 6);
 
@@ -80,7 +85,8 @@ public class RobotContainer {
 
                 // Configure the button bindings
                 configureButtonBindings();
-
+                m_armSystem.setDefaultCommand(armMove);
+                m_screwDrive.setDefaultCommand(screwMove);
                 // Configure default commands
                 m_robotDrive.setDefaultCommand(
                                 new RunCommand(
@@ -114,14 +120,14 @@ public class RobotContainer {
                 // m_robotDrive));
                 // button5.whileTrue(new ScrewLift(m_screwDrive));
                 // button6.whileTrue(new ScrewLower(m_screwDrive));
-                new JoystickButton(m_driverController, 5).whileTrue(m_Lift);
-                new JoystickButton(m_driverController, 6).whileTrue(m_Lower);
-                new JoystickButton(m_driverController, 3).whileTrue(m_CrabClaw);
-                new JoystickButton(m_driverController, 4).whileTrue(m_ClawClose);
-                new JoystickButton(m_driverController, 1).whileTrue(aDown);
-                new JoystickButton(m_driverController, 2).whileTrue(aUp);
-                new JoystickButton(m_driverController, 7).whileTrue(m_Compress);
-                // new JoystickButton(m_driverController, 8).whileTrue(aDeploy);
+                // new JoystickButton(m_driverController, 5).whileTrue(m_Lift);
+                // new JoystickButton(m_driverController, 6).whileTrue(m_Lower);
+                // new JoystickButton(m_driverController, 3).whileTrue(m_CrabClaw);
+                // new JoystickButton(m_driverController, 4).whileTrue(m_ClawClose);
+                new JoystickButton(m_armController, 5).whileTrue(m_CrabClaw);
+                new JoystickButton(m_armController, 6).whileTrue(m_ClawClose);
+                // new JoystickButton(m_driverController, 7).whileTrue(m_Compress);
+                new JoystickButton(m_armController, 1).whileTrue(aDeploy);
         }
 
         /**
