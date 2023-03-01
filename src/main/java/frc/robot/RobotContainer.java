@@ -114,19 +114,8 @@ public class RobotContainer {
          * {@link JoystickButton}.
          */
         private void configureButtonBindings() {
-                // new JoystickButton(m_driverController, Button.kR1.value)
-                // .whileTrue(new RunCommand(
-                // () -> m_robotDrive.setX(),
-                // m_robotDrive));
-                // button5.whileTrue(new ScrewLift(m_screwDrive));
-                // button6.whileTrue(new ScrewLower(m_screwDrive));
-                // new JoystickButton(m_driverController, 5).whileTrue(m_Lift);
-                // new JoystickButton(m_driverController, 6).whileTrue(m_Lower);
-                // new JoystickButton(m_driverController, 3).whileTrue(m_CrabClaw);
-                // new JoystickButton(m_driverController, 4).whileTrue(m_ClawClose);
                 new JoystickButton(m_armController, 5).whileTrue(m_CrabClaw);
                 new JoystickButton(m_armController, 6).whileTrue(m_ClawClose);
-                // new JoystickButton(m_driverController, 7).whileTrue(m_Compress);
                 new JoystickButton(m_armController, 1).whileTrue(aDeploy);
         }
 
