@@ -14,7 +14,7 @@ public class Armticulation extends SubsystemBase {
     }
 
     public void deploy() {
-        m_Armticulation.set(1);
+        m_Armticulation.set(0.25);
     }
 
     public void stopDeploy() {

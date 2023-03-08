@@ -38,6 +38,7 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.PneumaticSystem;
 import frc.robot.subsystems.ScrewDrive;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -123,9 +124,10 @@ public class RobotContainer {
          * Use this to pass the autonomous command to the main {@link Robot} class.
          *
          * @return the command to run in autonomous
-         */
+         *///
         public Command getAutonomousCommand() {
                 // Create config for trajectory
+                // new (m_ClawClose
                 TrajectoryConfig config = new TrajectoryConfig(
                                 AutoConstants.kMaxSpeedMetersPerSecond,
                                 AutoConstants.kMaxAccelerationMetersPerSecondSquared)
@@ -137,11 +139,11 @@ public class RobotContainer {
                                 // Start at the origin facing the +X direction
                                 new Pose2d(0, 0, new Rotation2d(0)),
                                 // Waypoint syntax - newTranslation2d(x,y,(optional)Rotation);
-                                List.of(new Translation2d(1, 0), new Translation2d(1, 1), new Translation2d(0, 1)),
+                                List.of(new Translation2d(2, 0)),
                                 // End 3 meters straight ahead of where we started, facing forward
-                                new Pose2d(0, 0, new Rotation2d(1)),
+                                new Pose2d(2, 0, new Rotation2d(0)),
                                 config);
-                // hi
+                // hello programming team
                 var thetaController = new ProfiledPIDController(
                                 AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints);
                 thetaController.enableContinuousInput(-Math.PI, Math.PI);
@@ -163,5 +165,9 @@ public class RobotContainer {
 
                 // Run path following command, then stop at the end.
                 return swerveControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false));
+        }
+
+        private Runnable CrabClawClose(PneumaticSystem pneumaticSystem2) {
+                return null;
         }
 }
