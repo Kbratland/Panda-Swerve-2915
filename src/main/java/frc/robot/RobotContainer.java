@@ -118,6 +118,10 @@ public class RobotContainer {
                 new JoystickButton(m_armController, 5).whileTrue(m_CrabClaw);
                 new JoystickButton(m_armController, 6).whileTrue(m_ClawClose);
                 new JoystickButton(m_armController, 1).whileTrue(aDeploy);
+                new JoystickButton(m_driverController, 1).whileTrue(aUp);
+                new JoystickButton(m_driverController, 2).whileTrue(aDown);
+                new JoystickButton(m_driverController, 3).whileTrue(m_CrabClaw);
+                new JoystickButton(m_driverController, 4).whileTrue(m_ClawClose);
         }
 
         /**
