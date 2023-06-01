@@ -55,8 +55,9 @@ import java.util.List;
 public class RobotContainer {
         // The robot's subsystems+
 
-        Joystick m_driverController = new Joystick(0);
+        //Joystick m_driverController = new Joystick(0);
         XboxController m_armController = new XboxController(1);
+        Joystick m_driverController = new Joystick(4);
 
         private final DriveSubsystem m_robotDrive = new DriveSubsystem();
         private final PneumaticSystem pneumaticSystem = new PneumaticSystem();
